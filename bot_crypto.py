@@ -53,23 +53,23 @@ def read_config():
 def send_message(data, id_bot, chat_id):
     myBot = telegram.Bot(token=id_bot)
     #print(myBot)
-    monedas = ['Bitcoin','Ethereum']
+    coins_all = ['Bitcoin','Ethereum']
     now = datetime.now()
     now = now.strftime("%d / %B / %Y -- %H:%M:%S")
     line = '---------------------------------'
     a = str(now) + '\n' + line
-    for moneda in monedas:
+    for coin in coins_all:
         a = a + '\n' + \
-        'Nombre = ' + data[moneda]['name']+'\n'+ \
-        'Simbolo = ' + data[moneda]['symbol']+'\n'+ \
-        'Ranking = ' + str(data[moneda]['cmc_rank'])+'\n'+ \
-        'Ultima actualizacion = ' + str(data[moneda]['last_updated'])+'\n'+ \
-        'Precio = ' + str(data[moneda]['quote']['USD']['price'])+'\n'+ \
-        'Cambio en la ultima hora = ' + str(data[moneda]['quote']['USD']['percent_change_1h'])+'% \n'+ \
-        'Cambio en las ultimas 24 horas = ' + str(data[moneda]['quote']['USD']['percent_change_24h'])+'% \n'+ \
-        'Cambio en los ultimos 7 dias = ' + str(data[moneda]['quote']['USD']['percent_change_7d'])+'% \n'+ \
-        'Cambio en los ultimos 30 dias = ' + str(data[moneda]['quote']['USD']['percent_change_30d'])+'% \n'+ \
-        'Markep Cap = ' + str(data[moneda]['quote']['USD']['market_cap'])+'\n'+line
+        'Nombre = ' + data[coin]['name']+'\n'+ \
+        'Simbolo = ' + data[coin]['symbol']+'\n'+ \
+        'Ranking = ' + str(data[coin]['cmc_rank'])+'\n'+ \
+        'Ultima actualizacion = ' + str(data[coin]['last_updated'])+'\n'+ \
+        'Precio = ' + str(data[coin]['quote']['USD']['price'])+'\n'+ \
+        'Cambio en la ultima hora = ' + str(data[coin]['quote']['USD']['percent_change_1h'])+'% \n'+ \
+        'Cambio en las ultimas 24 horas = ' + str(data[coin]['quote']['USD']['percent_change_24h'])+'% \n'+ \
+        'Cambio en los ultimos 7 dias = ' + str(data[coin]['quote']['USD']['percent_change_7d'])+'% \n'+ \
+        'Cambio en los ultimos 30 dias = ' + str(data[coin]['quote']['USD']['percent_change_30d'])+'% \n'+ \
+        'Markep Cap = ' + str(data[coin]['quote']['USD']['market_cap'])+'\n'+line
     myBot.send_message(chat_id=chat_id, text=a)
 
 def main():
