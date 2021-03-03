@@ -74,8 +74,8 @@ def send_message(data, id_bot, chat_id):
 
 def main():
     id_bot, chat_id,api_key_CMC = read_config()
-    data_coin = coin(api_key_CMC)
-    save_data_BTC(data_coin)
+    #data_coin = coin(api_key_CMC)
+    #save_data_BTC(data_coin)
     data = read_data_BTC()
     send_message(data,id_bot,chat_id)
     

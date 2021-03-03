@@ -1,0 +1,4 @@
+telegram
+requests
+datetime
+python-telegram-bot
