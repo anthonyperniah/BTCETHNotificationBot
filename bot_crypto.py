@@ -49,7 +49,8 @@ def read_config():
     id_bot = config['id_bot']
     chat_id = config['chat_id']
     api_key_CMC = config['api_key_CMC']
-    return id_bot, chat_id, api_key_CMC
+    time_to_send = config['time_to_send']
+    return id_bot, chat_id, api_key_CMC, time_to_send
 
 def send_message(data, id_bot, chat_id):
     myBot = telegram.Bot(token=id_bot)
@@ -74,17 +75,17 @@ def send_message(data, id_bot, chat_id):
     myBot.send_message(chat_id=chat_id, text=a)
 
 def main():
-    id_bot, chat_id,api_key_CMC = read_config()
-    #data_coin = coin(api_key_CMC)
-    #save_data_BTC(data_coin)
-    data = read_data_BTC()
-    send_message(data,id_bot,chat_id)
+        while True:
+            try:
+                id_bot, chat_id,api_key_CMC,time_to_send = read_config()
+                #data_coin = coin(api_key_CMC)
+                #save_data_BTC(data_coin)
+                data = read_data_BTC()
+                send_message(data,id_bot,chat_id)
+                time.sleep(int(time_to_send))
+            except:
+                break
     
 
 if __name__ == '__main__':
-    while True:
-        try:
-            main()
-            time.sleep(300)
-        except:
-            break
+    main()

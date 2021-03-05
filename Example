@@ -1,3 +1,0 @@
-docker build -t bot_telegram .
-docker run --name bot_telegram_app -d bot_telegram
-docker exec -it bot_telegram_app bash
