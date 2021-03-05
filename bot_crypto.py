@@ -3,6 +3,7 @@ import telegram
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 from datetime import datetime
+import time
 
 def save_data_BTC(data_coin):
     with open('data.txt', 'w') as outfile:
@@ -81,4 +82,7 @@ def main():
     
 
 if __name__ == '__main__':
-    main()
+    while True:
+        main()
+        t=60
+        time.sleep(t)
