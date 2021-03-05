@@ -84,5 +84,4 @@ def main():
 if __name__ == '__main__':
     while True:
         main()
-        t=60
-        time.sleep(t)
+        time.sleep(300)
