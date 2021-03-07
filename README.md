@@ -32,7 +32,7 @@ and now in the Terminal
 
 Build Image:
 
- - `docker build -t bot_telegram `
+ - `docker build -t bot_telegram .`
 
 Create Container with this image:
 
