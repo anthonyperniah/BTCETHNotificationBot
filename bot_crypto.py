@@ -68,9 +68,9 @@ def send_message(data, id_bot, chat_id):
     logger = login()
     for coin in coins_all:
         a = a + '\n' + \
-            'Nombre = ' + data[coin]['name']+' 🪙 \n' + \
+            'Nombre = ' + data[coin]['name']+' \n' + \
             'Simbolo = ' + data[coin]['symbol']+'\n' + \
-            'Ranking = ' + str(data[coin]['cmc_rank'])+' 💹 \n' + \
+            'Ranking = ' + str(data[coin]['cmc_rank'])+' \n' + \
             'Ultima actualizacion = ' + str(data[coin]['last_updated'])+'\n' + \
             'Precio = ' + str(data[coin]['quote']['USD']['price'])+'\n' + \
             'Cambio en la ultima hora = ' + str(data[coin]['quote']['USD']['percent_change_1h'])+'% \n' + \
