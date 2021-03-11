@@ -103,8 +103,8 @@ def main():
         data = read_data_BTC()
         send_message(data, id_bot, chat_id)
         time.sleep(int(time_to_send))
-    except:
-        print('error _____ enviando msj')
+    except ValueError as e:
+        print('error _____ enviando msj', e)
 
 if __name__ == '__main__':
     main()
