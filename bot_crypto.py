@@ -4,6 +4,7 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 from datetime import datetime
 import time
+import logging
 
 
 def save_data_BTC(data_coin):
@@ -64,6 +65,7 @@ def send_message(data, id_bot, chat_id):
     now = now.strftime("%d / %B / %Y -- %H:%M:%S")
     line = '---------------------------------'
     a = str(now) + '\n' + line
+    logger = login()
     for coin in coins_all:
         a = a + '\n' + \
             'Nombre = ' + data[coin]['name']+' 🪙 \n' + \
@@ -77,21 +79,32 @@ def send_message(data, id_bot, chat_id):
             'Cambio en los ultimos 30 dias = ' + str(data[coin]['quote']['USD']['percent_change_30d'])+'% \n' + \
             'Markep Cap = ' + str(data[coin]['quote']
                                   ['USD']['market_cap'])+'\n'+line
+
+        logger.debug('Coin = {} {}'.format(
+            data[coin]['name'], str(datetime.now())))
     myBot.send_message(chat_id=chat_id, text=a)
 
 
-def main():
-    while True:
-        try:
-            id_bot, chat_id, api_key_CMC, time_to_send = read_config()
-            data_coin = coin(api_key_CMC)
-            save_data_BTC(data_coin)
-            data = read_data_BTC()
-            send_message(data, id_bot, chat_id)
-            time.sleep(int(time_to_send))
-        except:
-            break
+def login():
+    logger = logging.getLogger('ejemplo_Log')
+    logger.setLevel(logging.DEBUG)
+    fh = logging.FileHandler('debug.log')
+    fh.setLevel(logging.DEBUG)
+    logger.addHandler(fh)
+    return logger
 
+
+def main():
+    # while True:
+    try:
+        id_bot, chat_id, api_key_CMC, time_to_send = read_config()
+        data_coin = coin(api_key_CMC)
+        save_data_BTC(data_coin)
+        data = read_data_BTC()
+        send_message(data, id_bot, chat_id)
+        time.sleep(int(time_to_send))
+    except:
+        print('error _____ enviando msj')
 
 if __name__ == '__main__':
     main()
